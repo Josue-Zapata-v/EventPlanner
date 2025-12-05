@@ -1,0 +1,152 @@
+CONCEPTOS TÉCNICOS - EVENTPLANNER
+=====================================
+
+1. ¿QUÉ ES MVVM?
+-----------------
+MVVM (Model-View-ViewModel) es un patrón de arquitectura de software que separa la lógica de negocio de la interfaz de usuario.
+
+Componentes:
+- MODEL: Representa los datos y la lógica de negocio (Event.kt, repositorios)
+- VIEW: La interfaz de usuario que el usuario ve (Screens en Compose)
+- VIEWMODEL: Intermediario que conecta Model y View, maneja el estado de la UI
+
+Ventajas:
+- Separación de responsabilidades
+- Facilita las pruebas unitarias
+- Código más mantenible y escalable
+- Los ViewModels sobreviven a cambios de configuración (rotación de pantalla)
+
+En nuestro proyecto:
+- Models: Event.kt
+- Views: LoginScreen, RegisterScreen, EventListScreen, etc.
+- ViewModels: AuthViewModel, EventViewModel
+
+
+2. ¿QUÉ ES FIREBASE AUTH?
+--------------------------
+Firebase Authentication es un servicio de Firebase que proporciona autenticación de usuarios de forma segura.
+
+Características:
+- Autenticación con email/password
+- Autenticación con proveedores (Google, Facebook, etc.)
+- Manejo seguro de credenciales
+- Gestión de sesiones
+- Recuperación de contraseñas
+
+En nuestro proyecto:
+- Implementado en AuthRepository.kt
+- Métodos: signIn(), signUp(), signOut()
+- Manejo de errores personalizado
+- Validación de sesión activa
+
+
+3. ¿QUÉ ES FIRESTORE?
+----------------------
+Cloud Firestore es una base de datos NoSQL en la nube, flexible y escalable.
+
+Características:
+- Base de datos en tiempo real
+- Estructura de colecciones y documentos
+- Sincronización automática entre dispositivos
+- Consultas potentes
+- Offline support
+
+Estructura en nuestro proyecto:
+events (colección)
+  └── documentId (generado automáticamente)
+      ├── title: String
+      ├── date: String
+      ├── description: String
+      ├── userId: String
+      └── createdAt: Timestamp
+
+Ventajas:
+- Actualizaciones en tiempo real sin polling
+- Escalabilidad automática
+- Reglas de seguridad integradas
+
+
+4. ¿QUÉ ES JETPACK COMPOSE?
+----------------------------
+Jetpack Compose es el toolkit moderno de Android para construir interfaces de usuario nativas.
+
+Características principales:
+- UI declarativa (describes QUÉ mostrar, no CÓMO)
+- Menos código boilerplate que XML
+- Componentes reutilizables (@Composable)
+- Recomposición inteligente
+- Integración perfecta con Kotlin
+
+Conceptos clave:
+- @Composable: Funciones que emiten UI
+- State: remember, mutableStateOf para estado local
+- StateFlow: Estado reactivo desde ViewModels
+- Modifier: Para personalizar apariencia y comportamiento
+
+En nuestro proyecto:
+- Todas las pantallas son @Composable
+- Material Design 3 para componentes
+- CustomTextField, PrimaryButton para reutilización
+- Theme personalizado con colores y tipografías
+
+
+5. ¿QUÉ ES UN CRUD?
+--------------------
+CRUD es el acrónimo de Create, Read, Update, Delete - las cuatro operaciones básicas de persistencia de datos.
+
+En EventPlanner:
+
+CREATE (Crear):
+- Función: createEvent() en EventViewModel
+- Pantalla: CreateEventScreen
+- Acción: Agregar nuevo evento a Firestore
+
+READ (Leer):
+- Función: getEventsFlow() en EventRepository
+- Pantalla: EventListScreen
+- Acción: Obtener eventos en tiempo real con snapshot listener
+
+UPDATE (Actualizar):
+- Función: updateEvent() en EventViewModel
+- Pantalla: EditEventScreen
+- Acción: Modificar evento existente en Firestore
+
+DELETE (Eliminar):
+- Función: deleteEvent() en EventViewModel
+- Pantalla: EventListScreen (botón eliminar en EventCard)
+- Acción: Borrar evento de Firestore
+
+Implementación:
+- Todas las operaciones son asíncronas (suspend functions)
+- Manejo de errores con Result<T>
+- Feedback inmediato al usuario (mensajes de éxito/error)
+- Sincronización en tiempo real para Read
+
+
+ARQUITECTURA DEL PROYECTO
+==========================
+
+Estructura de carpetas:
+com.tecsup.eventplanner/
+├── data/
+│   ├── model/          # Modelos de datos
+│   └── repository/     # Repositorios para acceso a datos
+├── ui/
+│   ├── components/     # Componentes reutilizables
+│   ├── screens/        # Pantallas de la app
+│   │   ├── auth/       # Pantallas de autenticación
+│   │   └── events/     # Pantallas de eventos
+│   ├── theme/          # Tema, colores, tipografía
+│   └── viewmodel/      # ViewModels (lógica de presentación)
+├── navigation/         # Sistema de navegación
+└── MainActivity.kt     # Punto de entrada
+
+Flujo de datos:
+View → ViewModel → Repository → Firebase
+Firebase → Repository → ViewModel → View (StateFlow)
+
+Principios aplicados:
+- Single Responsibility Principle
+- Separation of Concerns
+- Dependency Injection (implícita)
+- Reactive programming con Flows
