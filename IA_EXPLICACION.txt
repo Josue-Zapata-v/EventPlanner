@@ -1,0 +1,174 @@
+USO RESPONSABLE DE INTELIGENCIA ARTIFICIAL EN EVENTPLANNER
+===========================================================
+
+DECLARACIÓN DE AUTORÍA
+-----------------------
+Este documento describe de manera transparente qué partes del proyecto EventPlanner fueron desarrolladas directamente por el equipo y cuáles recibieron asistencia de IA (Claude/ChatGPT/GitHub Copilot).
+
+
+PARTES PROGRAMADAS (SIN ASISTENCIA DE IA)
+--------------------------------------------------------
+
+1. CONFIGURACIÓN INICIAL:
+   - Creación del proyecto en Android Studio
+   - Configuración de Firebase Console
+   - Descarga y ubicación de google-services.json
+   - Configuración de Authentication en Firebase
+   - Creación de la base de datos Firestore
+   - Configuración de reglas de seguridad en Firestore
+
+2. PRUEBAS Y DEBUGGING:
+   - Pruebas de autenticación (login/registro)
+   - Validación de flujos CRUD
+   - Pruebas de navegación entre pantallas
+   - Corrección de errores de compilación
+   - Ajustes finos en validaciones
+
+3. PERSONALIZACIÓN:
+   - Selección de paleta de colores personalizada
+   - Decisiones de diseño UX/UI específicas
+   - Textos y mensajes en español
+   - Estructura de carpetas y organización
+   - Nombres de variables y funciones descriptivos
+
+
+PARTES ASISTIDAS POR INTELIGENCIA ARTIFICIAL
+---------------------------------------------
+
+1. ARQUITECTURA MVVM:
+   - Estructura base de ViewModels (AuthViewModel, EventViewModel)
+   - Implementación de StateFlow para manejo de estado
+   - Patrón Repository con Result<T>
+   
+   ¿Por qué usamos IA aquí?
+   La IA nos ayudó a entender e implementar correctamente el patrón MVVM, 
+   asegurando que seguimos las mejores prácticas de arquitectura Android.
+
+2. INTEGRACIÓN CON FIREBASE:
+   - Configuración de dependencias en build.gradle
+   - Implementación de AuthRepository con suspend functions
+   - EventRepository con snapshot listeners para tiempo real
+   - Manejo de errores específicos de Firebase
+   
+   ¿Por qué usamos IA aquí?
+   Firebase tiene muchas particularidades. La IA nos ayudó a implementar 
+   correctamente la autenticación y las operaciones CRUD en Firestore.
+
+3. JETPACK COMPOSE UI:
+   - Componentes personalizados (CustomTextField, PrimaryButton)
+   - Implementación de Material Design 3
+   - Layouts complejos con Column, Row, Box
+   - Manejo de estados con remember y collectAsState
+   
+   ¿Por qué usamos IA aquí?
+   Compose es relativamente nuevo. La IA nos ayudó a escribir código 
+   Compose idiomático y eficiente, evitando antipatrones.
+
+4. NAVEGACIÓN:
+   - Sistema de navegación con NavHost
+   - Definición de rutas y argumentos
+   - Manejo de back stack
+   
+   ¿Por qué usamos IA aquí?
+   La navegación en Compose tiene sus particularidades. La IA nos 
+   ayudó a implementarla correctamente con parámetros y navegación condicional.
+
+5. DISEÑO DE COMPONENTES:
+   - EventCard con diseño profesional
+   - Diálogos de confirmación
+   - Manejo de estados de loading
+   - Feedback visual (mensajes de error/éxito)
+   
+   ¿Por qué usamos IA aquí?
+   Para lograr un diseño profesional y consistente en toda la app.
+
+
+CÓMO USAMOS LA IA DE FORMA RESPONSABLE
+---------------------------------------
+
+1. COMPRENSIÓN DEL CÓDIGO:
+   ✓ No copiamos código sin entenderlo
+   ✓ Revisamos cada línea generada por IA
+   ✓ Modificamos el código para adaptarlo a nuestras necesidades
+   ✓ Agregamos comentarios para explicar secciones complejas
+
+2. APRENDIZAJE:
+   ✓ Usamos IA para aprender nuevos conceptos (MVVM, Flows, Compose)
+   ✓ Investigamos las APIs y funciones sugeridas por IA
+   ✓ Experimentamos con el código generado para entender cómo funciona
+
+3. PERSONALIZACIÓN:
+   ✓ Adaptamos los nombres de variables/funciones a nuestro contexto
+   ✓ Cambiamos textos y mensajes al español
+   ✓ Ajustamos colores y estilos según nuestra preferencia
+   ✓ Modificamos validaciones según nuestros requisitos
+
+4. DEBUGGING:
+   ✓ Cuando hay errores, primero intentamos resolverlos nosotros
+   ✓ Si usamos IA para debugging, entendemos la solución antes de aplicarla
+   ✓ Documentamos los errores encontrados y sus soluciones
+
+
+CÓMO EVITAR DEPENDER TOTALMENTE DE IA
+--------------------------------------
+
+1. FUNDAMENTOS PRIMERO:
+   - Estudia los conceptos básicos antes de usar IA
+   - Lee documentación oficial de Android, Firebase, Compose
+   - Practica escribiendo código simple sin IA
+
+2. USA IA COMO ASISTENTE, NO COMO REEMPLAZO:
+   - Intenta resolver problemas por tu cuenta primero
+   - Usa IA para validar tu solución o encontrar alternativas
+   - No dependas de IA para cada línea de código
+
+3. ENTIENDE EL CÓDIGO GENERADO:
+   - Si no entiendes algo, investiga hasta comprenderlo
+   - Refactoriza el código generado por IA a tu estilo
+   - Pregunta "¿por qué?" no solo "¿cómo?"
+
+4. PRACTICA SIN IA:
+   - Intenta recrear partes del proyecto sin ayuda
+   - Escribe código desde cero para componentes simples
+   - Resuelve bugs sin consultar IA inmediatamente
+
+5. REVISA Y VALIDA:
+   - No confíes ciegamente en el código de IA
+   - Prueba exhaustivamente todo el código
+   - Compara diferentes soluciones (IA vs manual)
+
+6. CONSTRUYE CONOCIMIENTO INCREMENTAL:
+   - Empieza con proyectos simples sin IA
+   - Gradualmente incorpora IA en proyectos más complejos
+   - Mantén un balance entre aprendizaje y productividad
+
+
+REFLEXIÓN FINAL
+----------------
+La IA es una herramienta poderosa que nos ayudó a:
+- Acelerar el desarrollo
+- Aprender mejores prácticas
+- Implementar patrones complejos correctamente
+- Crear una app profesional
+
+PERO es crucial:
+- Entender todo el código del proyecto
+- Poder explicar cada decisión de diseño
+- Ser capaces de mantener y extender el código
+- No depender de IA para resolver problemas básicos
+
+PORCENTAJE ESTIMADO:
+- 30% Código base generado/asistido por IA
+- 70% Integración, personalización, pruebas y ajustes
+
+La clave está en usar IA para aprender y mejorar, no para reemplazar el pensamiento crítico y la comprensión profunda de los conceptos de programación.
+
+
+COMPROMISO
+----------------------
+Nos comprometemos a:
+✓ Entender completamente el código de este proyecto
+✓ Poder explicar y defender cada decisión técnica
+✓ Continuar aprendiendo los fundamentos de Android y Kotlin
+✓ Usar IA de forma ética y responsable en futuros proyectos
+✓ No presentar código que no comprendamos como propio
